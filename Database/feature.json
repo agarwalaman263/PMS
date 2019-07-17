@@ -1,0 +1,16 @@
+{
+	"Features":{
+		"Heart Beat":
+		{
+			"Upper Bound": 100,
+			"Lower Bound": 50,
+			"Priority": 5
+		},
+		"Pulse Rate":{
+						"Upper Bound": 100,
+						"Lower Bound": 50,
+						"Priority": 5
+					}
+	},
+	"ListOfFeatures":["Heart Beat","Pulse Rate"]
+}
