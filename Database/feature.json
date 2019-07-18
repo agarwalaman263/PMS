@@ -1,44 +1,16 @@
 {
 	"Features":{
-		"HeartBeat":{
+		"Heart Beat":
+		{
 			"Upper Bound": 100,
 			"Lower Bound": 50,
 			"Priority": 5
 		},
-		"PulseRate":{
+		"Pulse Rate":{
 						"Upper Bound": 100,
 						"Lower Bound": 50,
 						"Priority": 5
-					},
-		"Temperature":{
-						"Upper Bound": 99,
-						"Lower Bound": 97.7,
-						"Priority": 3
-					},
-		"InsulinLevel":{
-						"Upper Bound": 130,
-						"Lower Bound": 70,
-						"Priority": 5
-					},
-		"PlateletCount":{
-						"Upper Bound": 450000,
-						"Lower Bound": 150000,
-						"Priority": 5
-					},
-		"RbcCount":{
-						"Upper Bound": 6100000,
-						"Lower Bound": 4700000,
-						"Priority": 3
-					},
-		"ThyroidLevel":{
-						"Upper Bound": 2,
-						"Lower Bound": 0.6,
-						"Priority": 3
-					},
-		
-
-
-
+					}
 	},
-	"ListOfFeatures":["HeartBeat","PulseRate"]
+	"ListOfFeatures":["Heart Beat","Pulse Rate"]
 }
