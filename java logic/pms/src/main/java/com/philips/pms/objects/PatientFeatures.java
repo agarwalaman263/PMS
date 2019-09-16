@@ -10,23 +10,23 @@ public class PatientFeatures {
 		this.pulseRate = pulseRate;
 		this.insulinLevel = insulinLevel;
 	}
-	public PatientFeatures() {
-		
-		
+	public PatientFeatures() {		
 	}
 	
 
 	public double getPulseRate() {
 		return pulseRate;
 	}
-	public void setPulseRate(double pulseRate) {
+	public boolean setPulseRate(double pulseRate) {
 		this.pulseRate = pulseRate;
+		return true;
 	}
 	public double getInsulinLevel() {
 		return insulinLevel;
 	}
-	public void setInsulinLevel(double insulinLevel) {
+	public boolean setInsulinLevel(double insulinLevel) {
 		this.insulinLevel = insulinLevel;
+		return true;
 	}
 	
 }

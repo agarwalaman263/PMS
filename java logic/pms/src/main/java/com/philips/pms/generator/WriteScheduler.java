@@ -14,13 +14,13 @@ import com.philips.pms.objects.PatientVitals;
 public class WriteScheduler {
 
 	private Gson gson = new GsonBuilder().setPrettyPrinting().create();
-	private Timer timer = new Timer();
-	private long currentTime;
+	public Timer timer = new Timer();
+	public long currentTime;
 	String jsonString;
 
-	public String schedule(String id,String type) {
+	public String schedule(int id,String type) {
 
-		PatientDetails patientDetails = new PatientDetails(id,type);
+		PatientDetails patientDetails = new PatientDetails(id+"",type);
 		currentTime = System.currentTimeMillis();
 		PatientFeatures features = new Initialiser().initialise();
 		PatientVitals ft = new PatientVitals(patientDetails, features);

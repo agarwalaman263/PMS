@@ -10,19 +10,14 @@ var serverInstance = new server({
 }, () => {
     fs.readFile('./features/Feature.json', 'utf8', (error, data) => {
         ListOffeatures = JSON.parse(data)
-        console.log(ListOffeatures)
     })
 })
-// dataReceiver.on('open',()=>{
-//     dataReceiver.send('aman')
-// })
 let SetOfPatients = new Set([]);
 serverInstance.on('connection', (ws) => {
     dataReceiver.send('aman')
     dataReceiver.on('message', (message) => {
-        // console.log(message)
+
         message = JSON.parse(message)
-        console.log(message.patientDemographics.patientId)
         if (message["patientDemographics"]['type'] == 'GeneratorSetter') {
             generatorValidator.main(ws._socket.remoteAddress).then(() => {
                 SetOfPatients.add(message['patientDemographics']['patientId'])
@@ -37,6 +32,7 @@ serverInstance.on('connection', (ws) => {
             generatorValidator.main(ws._socket.remoteAddress).then(() => {
                 serverInstance.clients.forEach((client) => {
                     if (client != ws && client.type == 'Subscriber' && client.patientId == message["patientDemographics"].patientId) {
+                            console.log(LogPrinter.main(message["patientVitals"], ListOffeatures))
                         client.send(JSON.stringify(LogPrinter.main(message["patientVitals"], ListOffeatures)))
                     }
                 })
@@ -56,11 +52,9 @@ serverInstance.on('connection', (ws) => {
 
     ws.on('message', (message) => {
         message = JSON.parse(message)
-        console.log(message.type)
         if (message["type"] == 'SubscriberSetter') {
-            console.log('aman')
             if (SetOfPatients.has(message['patientId'])) {
-                console.log('setted')
+
                 ws['type'] = 'Subscriber'
                 ws['patientId'] = message['patientId']
             }

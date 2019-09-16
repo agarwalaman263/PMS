@@ -22,11 +22,6 @@ public class Constants {
 	
 	public static final String DECIMAL_FORMATTER="#.##";
 	
-	public static final String FILE_FORMAT=".json";
-	public static final String FILE_LOCATION=System.getProperty("user.dir")+"\\Data\\data-";
-	public static final String LOGS_FILE_NAME="\\log.txt";
-	public static final String LOGS_FILE_LOCATION=System.getProperty("user.dir");
-	
 
 
 }

@@ -7,8 +7,9 @@ public class PatientDetails {
    
 	
 
-	public void setType(String type) {
+	public boolean setType(String type) {
 		this.type = type;
+		return true;
 	}
 
 
@@ -21,8 +22,9 @@ public class PatientDetails {
 
 
 
-	public void setId(String id) {
+	public boolean setId(String id) {
 		this.patientId=id;
+		return true;
 		
 	}
 
