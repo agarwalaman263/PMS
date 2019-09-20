@@ -1,0 +1,398 @@
+Javscript 
+
+Loosely Typed
+var name="smith"; //string
+var age=25 //number
+name = 100 //                             ALL ARE VALID 
+
+
+1==true;    //true
+0 ==false    //true
+1=== true   //false (in this case data typemust be same)
+
+-----------------------------
+
+[] +[]  // " "     gives empty string
+
+[] +{}   //object
+
+{} +[]   // 0
+
+
+----------------------
+
+javascript runs on engines
+a)V8 -> google chrome and Nodejs
+b) spiderMonley =>adobe,Firefox
+c)Continuum => MSEdge
+
+
+
+function add(x,y){
+	return x+y;
+}
+
+var result add(4,5);   //9
+-------------------------------------------------
+
+function add(x,y){
+	return 
+
+	x+y;
+}
+
+var result add(4,5);   //UNDEFINED               -> because JS does Semicolon insertion after return and default return type of js is undefined.
+
+-----------------------------------------------
+
+ES 5
+
+
+var g= 100;
+function doTask(){
+	var a=10;
+	 if(g>a){
+	 var b =20;
+	 c=50
+	 }
+
+	 console.log(g,a,b,c);   //100,10,20,50     -> b and c  are visible although there scope is restricted beacuse of VARIABLE HOISTING.
+	}
+	console.log(g,a,b,c);  //100,undefined,undefined,50      ->c is visible because var keyword not specified and this variable gets hoisted to global level
+
+	doTask();
+
+	-----------------------------------------
+	High Order Functions:
+
+	a)Functions which accept other functions as arguments 
+	b) Function which return a function
+
+
+	-> Treat functiona s first class members 
+	var fn= function(){}  // valid  // 
+
+	EXAMPLE
+	var names = ["George" ,"Sally", "Allen"];
+
+var forEach =function(Element,action){
+    for(var i=0;i<names.length;i++){
+        action(Element[i]);              
+    }
+}
+
+
+forEach(names,console.log);
+
+
+-----------------------------------------------------------
+
+action-> used if you need to do any action like console.log or alert 
+predicate is afunction  that return bollean value .
+
+ES6 ==>ES2015 => EsNext are the new versions of Javscript,still not suppported by most of the browsers
+Babel/Traceur id a transpiler(converts js to js) ES6/ES7 to lower version.
+
+
+ES6 features 
+1)scoped variableand constants
+"let" and "constant"
+
+2)Arrow Operator
+    let sub =(x,y) => x-y;
+
+3)Default Values
+
+let add =(x=0,y =0 , z =0) =>x+y+z;
+
+add();
+add(2);
+add(2,5);
+add(5,7,8);
+
+4)Deconstructing Object 
+
+  var product ={name :'Lenovo' ,cost :500000 , Type :'Laptop'};
+  let {name,cost} =product;
+  console.log(name,cost);
+
+
+  5)Deconstructing arrays 
+  var colours = ['red','blue','green'];
+   //old waay
+    var r =colours[0];
+
+
+
+    //new way
+    let[r,g,b ....other]= colours ;
+
+ 6)New String literal ==. tick mark
+
+          var name= "Smith";
+          var message =`
+          Have a nice Day ${name},
+             Welcome to Philips
+             `;
+
+             7) Es 6 module system
+
+             first.js
+             exports function add(x,y){
+             return x+y;
+             }
+
+
+
+             second.js
+             import {add} from './first';
+             console.log(add(4,5));
+
+
+ 7)Promise API 
+  function doTask(){
+    return new Promise( (resolve,reject) =>{
+        setTimeout(()=>{
+            return resolve("Success :-)")
+        },2000);
+    });
+}
+
+doTask().then((data) => {
+console.log(data);
+},(err) =>{
+    console.log(":-(" +err);
+})
+
+
+for asynchronous code .
+
+
+=======================================================================
+TYPESCRIPT 
+
+use donly during development stage 
+In production typescript is not understood by browsers 
+Typescript converts .ts into .js files
+
+npm => node package manager to download the dependencies (similar to maven in java)
+
+
+Annotation:Metadata 
+can be used by compiler   :@Override
+can be used at Runtime(JRE) :@RequestMapping
+
+ts:ExperimentalDecorators similar to annotations 
+
+
+Module Sytem 
+common js module system 
+
+a.js
+exports.add =function(){
+	
+} 
+
+
+other.js
+var add=require('./a').add;
+
+
+ES6 Module Sytem
+
+person.class
+export class Person{
+	
+}
+
+other.js
+
+import {Person} from './Person'
+
+======================================================
+js Build Tools 
+grunt 
+gulp 
+webpack - helps you create modules or chunks so that when they are loaded by html page 20 js files are not uploaded rather a js module is uploaded as 1 js file . it reduces network traffic.
+
+https://createapp.dev/    -> use this website 
+
+its a bundler 
+
+a)package.json => pom.xml of java 
+we configure scripts dependencies 
+
+
+=======================================================
+Building SPA and RWD
+
+RWD - Responsive Web Design => page should adopt to different devices and resolution 
+resolutions
+use    @media()
+Use libraries liek: Bootstrap and Foundation 
+
+
+SPA - single page App 
+index.html file 
+
+Challenges faced in Building SPA 
+1> Data binding 
+    a)One-Way Binding
+       Data coming from the server is bound to a placeholder in HTML/ :${name}
+       JSP :<%= name %>
+
+
+    b)Two-Way Binding
+
+2> Caching
+we may have many templates 
+
+3>Routing 
+4>AUthentication and Authorisation 
+
+
+-> Srver sid eRendering and Client sid eRendering - returns a rendered view
+"jsp" ,"asp""php","flask","ejs"
+
+Client Side Rendering ==> server sends the representation[CSV,XML,JSON]
+rendering happens in client:
+==> handleBArs #name
+    moustache {{name}}
+    Underscore <%- name %>
+    JQuery
+
+    or you can ue framewrks such as ANGULAR,BACKBONE,
+    or you can use View Template Libraries 
+          ReactJS 
+          KnockoutJS
+
+To solve this we can use 
+
+=======================================================================
+ANGULAR FRAMEWORK
+
+Angular 7/8 
+   Core Building Blocks of Angular 
+    1)modules declared with decorator called as @NgModule
+    module is a collection of components ,service ,pipes,directives,guards '
+
+    Customer Module 
+    Ordermodule
+    AdminModule
+
+
+    Built in modules 
+    @angular/core   @angular/common   @angular/router @angluar/forms
+
+
+    Services are plain classes which are injectable 
+    -> Any business logic 
+    -> Call to REST Api's 
+
+    @Injectable  --> it becomes a service 
+
+    @Component
+       - will have a class with state and behaviour 
+       - it will have an associated template (HTML code fragment)
+       - have its own selector 
+       - have its own css
+
+Example 
+
+@Component({
+	selector:'app-person',
+	template : <div>     .....   <div>
+})
+
+
+export class Person{
+	firstName:
+	dotask(){
+
+	}
+}
+
+In HTML Page 
+<app-person>  ..........
+
+
+Flow:
+webpack checks angular.json to find the entry point (i.e main.ts) 
+main.ts:
+
+  bootstraps the mainmodule to be loaded (AppModule)
+
+  App.module.ts:
+    it loads all components[declarations]
+    it loads all the services which is provided by [providers] .
+    it loads other depenedent modules by [imports] 
+    bootsraps the main components /first componenets[Appcomponents]
+
+
+    app.component.ts
+      selector "app-root"
+      its html is present
+
+      index.html
+        <app-root> .. <app-root>
+
+        A Component is a shadow dom ,user defined html tag .wraps the actual dom elements .
+
+
+
+        --> To ceate a component write this command 
+         ng g c customer/customers --spec=false
+         
+
+         *ngIf is a structural directive it creates a dom only if condition is true 
+
+         =================================
+         Events in angular(click) (keyup) (change)
+
+         to use html forms we should include forms modeule
+         import { Forms Module }
+
+         imports 
+         add formsmodule 
+
+         [()]= two way binding 
+         (event)
+         [input]  passing data from parent to child 
+
+
+         ================================================================
+         ROUTING 
+         http://localhost:4200   should displayHomeComponent
+         http://localhost:4200/customers   should display custome rcomponenets 
+
+          http://localhost:4200/
+
+
+          we need build restful webservices//spring boot restful webservices
+
+          npm i -g json-server    ---> uses .json file as storag
+          e
+
+          Angular services by default are sngleton , any backend calls should be done here 
+          any business logic goes here 
+          communication between components can be done using service 
+
+
+          service use ReactiveJS rxjs libraries which is based on Observable and subscription model.
+          to make http request we need 
+          1>http client module has to be included and 
+          2>http client service has to be injected .
+          ===============================================
+          @ViewChild
+
+          bUILT in module - FormsModule
+          Router Module 
+          HttpClientModule 
+
+          link activate file .ts- has guards -can activate//canDeactivate
+
+
+          Creating Modules -- for modularizing your code 
+          break up your application into modules so that 
+
+

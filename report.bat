@@ -1,0 +1,1 @@
+start ./java logic/pms/target/site/jacoco/index.html

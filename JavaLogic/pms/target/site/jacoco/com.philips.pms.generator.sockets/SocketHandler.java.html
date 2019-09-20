@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SocketHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pms</a> &gt; <a href="index.source.html" class="el_package">com.philips.pms.generator.sockets</a> &gt; <span class="el_source">SocketHandler.java</span></div><h1>SocketHandler.java</h1><pre class="source lang-java linenums">package com.philips.pms.generator.sockets;
+
+import com.philips.pms.generator.WriteScheduler;
+import com.philips.pms.objects.ListData;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import java.io.IOException;
+import java.util.List;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+@Component
+<span class="fc" id="L19">public class SocketHandler extends TextWebSocketHandler {</span>
+<span class="fc" id="L20">	private Timer timer = new Timer();</span>
+<span class="fc" id="L21">	static List&lt;WebSocketSession&gt; sessions = new CopyOnWriteArrayList&lt;&gt;();</span>
+
+	
+	
+	@Override
+	public void handleTextMessage(WebSocketSession session, TextMessage message)
+			throws InterruptedException, IOException {
+
+<span class="nc" id="L29">		ListData.msg.sendMessage(session,  &quot;GeneratorSetter&quot;);</span>
+
+<span class="nc" id="L31">		timer.scheduleAtFixedRate(new TimerTask() {</span>
+			public void run() {
+
+				try {
+<span class="nc bnc" id="L35" title="All 2 branches missed.">					if (!ListData.patientAdmitQueue.isEmpty()) {</span>
+
+<span class="nc" id="L37">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
+<span class="nc" id="L38">								.schedule(ListData.patientAdmitQueue.poll().getId(), &quot;GeneratorSetter&quot;)));</span>
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">					} else if (!ListData.patientDischargeQueue.isEmpty()) {</span>
+
+<span class="nc" id="L42">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
+<span class="nc" id="L43">								.schedule(ListData.patientDischargeQueue.poll().getId(), &quot;DeleatPatient&quot;)));</span>
+
+<span class="nc" id="L45">					} else {</span>
+						
+<span class="nc" id="L47">						ListData.msg.sendMessage(session,  &quot;Generator&quot;);</span>
+
+					}
+					
+<span class="nc" id="L51">				} catch (IOException e) {</span>
+<span class="nc" id="L52">					e.printStackTrace();</span>
+				}
+
+<span class="nc" id="L55">			}</span>
+<span class="nc" id="L56">		}, 1000, 5000);</span>
+
+<span class="nc" id="L58">	}</span>
+
+	@Override
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+
+		// the messages will be broadcasted to all users.
+<span class="nc" id="L64">		sessions.add(session);</span>
+
+		
+<span class="nc" id="L67">		ListData.msg.sendMessage(session,  &quot;GeneratorSetter&quot;);</span>
+
+<span class="nc" id="L69">		session.sendMessage(new TextMessage(&quot;hi&quot;));</span>
+		
+<span class="nc" id="L71">		timer.scheduleAtFixedRate(new TimerTask() {</span>
+			public void run() {
+
+				try {
+<span class="nc bnc" id="L75" title="All 2 branches missed.">					if (!ListData.patientAdmitQueue.isEmpty()) {</span>
+
+<span class="nc" id="L77">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
+<span class="nc" id="L78">								.schedule(ListData.patientAdmitQueue.poll().getId(), &quot;GeneratorSetter&quot;)));</span>
+
+<span class="nc bnc" id="L80" title="All 2 branches missed.">					} else if (!ListData.patientDischargeQueue.isEmpty()) {</span>
+
+<span class="nc" id="L82">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
+<span class="nc" id="L83">								.schedule(ListData.patientDischargeQueue.poll().getId(), &quot;DeleatPatient&quot;)));</span>
+
+<span class="nc" id="L85">					} else {</span>
+						
+<span class="nc" id="L87">						ListData.msg.sendMessage(session,  &quot;Generator&quot;);</span>
+
+					}
+					
+<span class="nc" id="L91">				} catch (IOException e) {</span>
+<span class="nc" id="L92">					e.printStackTrace();</span>
+				}
+
+<span class="nc" id="L95">			}</span>
+<span class="nc" id="L96">		}, 1000, 5000);</span>
+		
+		
+<span class="nc" id="L99">	}</span>
+
+		
+		
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

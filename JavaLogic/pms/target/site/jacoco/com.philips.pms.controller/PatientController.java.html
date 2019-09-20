@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pms</a> &gt; <a href="index.source.html" class="el_package">com.philips.pms.controller</a> &gt; <span class="el_source">PatientController.java</span></div><h1>PatientController.java</h1><pre class="source lang-java linenums">package com.philips.pms.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.philips.pms.objects.ListData;
+
+import com.philips.pms.patient.IPatientAdmiter;
+
+@RestController
+@RequestMapping(&quot;/pms&quot;)
+<span class="fc" id="L16">public class PatientController {</span>
+
+	@Autowired
+	IPatientAdmiter patientAdmit;
+
+	// to see all patients
+	@GetMapping(&quot;/patients&quot;)
+	public String function5(Model model) {
+
+<span class="fc" id="L25">		return ListData.patientList.toString();</span>
+
+	}
+
+	// to see a particular patient
+	@GetMapping(&quot;/patients/{number}&quot;)
+	public String getPatients(@PathVariable int number) {
+
+<span class="fc" id="L33">		return ListData.patientList.get(number).toString();</span>
+
+	}
+
+	// to register new patient
+	@GetMapping(&quot;/patients/register/{number}&quot;)
+	public String registerPatient(@PathVariable int number) {
+
+<span class="fc" id="L41">		return (patientAdmit.patientAdmit(number));</span>
+
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>
