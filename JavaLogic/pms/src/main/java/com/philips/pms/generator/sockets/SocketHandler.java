@@ -61,44 +61,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
 		// the messages will be broadcasted to all users.
-		sessions.add(session);
-
-		
-		ListData.msg.sendMessage(session,  "GeneratorSetter");
-
-		session.sendMessage(new TextMessage("hi"));
-		
-		timer.scheduleAtFixedRate(new TimerTask() {
-			public void run() {
-
-				try {
-					if (!ListData.patientAdmitQueue.isEmpty()) {
-
-						session.sendMessage(new TextMessage(new WriteScheduler()
-								.schedule(ListData.patientAdmitQueue.poll().getId(), "GeneratorSetter")));
-
-					} else if (!ListData.patientDischargeQueue.isEmpty()) {
-
-						session.sendMessage(new TextMessage(new WriteScheduler()
-								.schedule(ListData.patientDischargeQueue.poll().getId(), "DeleatPatient")));
-
-					} else {
-						
-						ListData.msg.sendMessage(session,  "Generator");
-
-					}
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-			}
-		}, 1000, 5000);
-		
-		
-	}
-
-		
+		sessions.add(session);		
 		
 	
 }
