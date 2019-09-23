@@ -15,7 +15,7 @@ public class SessionMessageSenderImpl implements ISessionMessageSender {
 
 	@Override
 	public void sendMessage(WebSocketSession ws,String type) throws IOException {
-		for (Patients patient : ListData.patientList) {
+		for (Patients patient : ListData.getPatientList()) {
 			ws.sendMessage(new TextMessage(new WriteScheduler().schedule(patient.getId(), type)));
 		
 		}

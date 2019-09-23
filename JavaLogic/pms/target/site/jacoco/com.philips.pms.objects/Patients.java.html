@@ -3,29 +3,22 @@
 public class Patients {
 
 	private int id;
-	//private Alarm activatedAlarms;
+	
 
-	public Patients() {
-<span class="fc" id="L9">		super();</span>
-<span class="fc" id="L10">		this.id = ListData.patientIdCounter++;</span>
-	//	this.activatedAlarms = new Alarm();
-<span class="fc" id="L12">	}</span>
+<span class="fc" id="L8">	public Patients() {</span>
+<span class="fc" id="L9">		this.id = ListData.setPatientIdCounter(ListData.getPatientIdCounter()+1);</span>
+	
+<span class="fc" id="L11">	}</span>
 
 	public int getId() {
-<span class="nc" id="L15">		return id;</span>
+<span class="fc" id="L14">		return id;</span>
 	}
 
-	/*
-	 * public Alarm getActivatedAlarms() { return activatedAlarms; }
-	 * 
-	 * public boolean unsubscribe() { activatedAlarms=null; return true; }
-	 * 
-	 * public boolean subscribe() { activatedAlarms=new Alarm(); return true; }
-	 */	
+	
 	
 	@Override
 	public String toString() {
-<span class="fc" id="L28">		return &quot;{patientsId :&quot; + id + &quot;}&quot;;</span>
+<span class="fc" id="L21">		return &quot;{patientsId :&quot; + id + &quot;}&quot;;</span>
 	}
 
 }

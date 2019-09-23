@@ -8,10 +8,11 @@ import com.philips.pms.objects.PatientFeatures;
 public class Initialiser {
 
 
-	public DecimalFormat df = new DecimalFormat(Constants.DECIMAL_FORMATTER);
-	public Randomiser rand = new Randomiser();
-
+	public static final DecimalFormat df = new DecimalFormat(Constants.DECIMAL_FORMATTER);
+	public static final Randomiser rand = new Randomiser();
 	public PatientFeatures patientFeatures;
+
+	
 	
 	public PatientFeatures initialise() {
 

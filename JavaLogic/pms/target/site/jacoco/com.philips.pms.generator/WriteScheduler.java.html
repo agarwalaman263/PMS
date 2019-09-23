@@ -14,22 +14,30 @@ import com.philips.pms.objects.PatientVitals;
 <span class="fc" id="L14">public class WriteScheduler {</span>
 
 <span class="fc" id="L16">	private Gson gson = new GsonBuilder().setPrettyPrinting().create();</span>
-<span class="fc" id="L17">	public Timer timer = new Timer();</span>
-	public long currentTime;
+<span class="fc" id="L17">	public static final Timer timer = new Timer();</span>
+	private long currentTime;
 	String jsonString;
 
 	public String schedule(int id,String type) {
 
 <span class="fc" id="L23">		PatientDetails patientDetails = new PatientDetails(id+&quot;&quot;,type);</span>
-<span class="fc" id="L24">		currentTime = System.currentTimeMillis();</span>
+<span class="fc" id="L24">		setCurrentTime(System.currentTimeMillis());</span>
 <span class="fc" id="L25">		PatientFeatures features = new Initialiser().initialise();</span>
 <span class="fc" id="L26">		PatientVitals ft = new PatientVitals(patientDetails, features);</span>
 <span class="fc" id="L27">		jsonString = gson.toJson(ft);</span>
-<span class="fc" id="L28">		System.out.println(jsonString);</span>
+		
 
 <span class="fc" id="L30">		return jsonString;</span>
 
 	}
+
+	public long getCurrentTime() {
+<span class="nc" id="L35">		return currentTime;</span>
+	}
+
+	public void setCurrentTime(long currentTime) {
+<span class="fc" id="L39">		this.currentTime = currentTime;</span>
+<span class="fc" id="L40">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -40,7 +40,7 @@ public class PatientControllerTest {
 	public void setUp() throws Exception {
 
 		mockMvc = MockMvcBuilders.standaloneSetup(patientController).apply(sharedHttpSession()).build();
-		ListData.patientList.add(new Patients());
+		ListData.getPatientList().add(new Patients());
 
 	}
 

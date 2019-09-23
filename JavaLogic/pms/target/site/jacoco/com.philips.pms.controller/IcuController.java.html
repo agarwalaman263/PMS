@@ -35,7 +35,7 @@ import com.philips.pms.objects.ListData;
 	@GetMapping(&quot;/bed&quot;)
 	public String getBedsDetails(Model model) {
 
-<span class="fc" id="L38">		return (ListData.bedList.toString());</span>
+<span class="fc" id="L38">		return (ListData.getBedList().toString());</span>
 
 	}
 
@@ -43,7 +43,7 @@ import com.philips.pms.objects.ListData;
 	@GetMapping(&quot;/bed/{number}&quot;)
 	public String getBedDeatils(@PathVariable int number) {
 
-<span class="fc" id="L46">		return (&quot;bed:&quot; + number + &quot; : &quot; + ListData.bedList.get(number).getBed());</span>
+<span class="fc" id="L46">		return (&quot;bed:&quot; + number + &quot; : &quot; + ListData.getBedList().get(number).getBed());</span>
 
 	}
 

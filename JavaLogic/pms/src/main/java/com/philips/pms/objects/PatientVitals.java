@@ -3,7 +3,7 @@ package com.philips.pms.objects;
 public class PatientVitals {
 
 	private PatientDetails patientDemographics;
-	private PatientFeatures patientVitals;
+	private PatientFeatures vitals;
 
 	public PatientVitals() {
 		
@@ -16,11 +16,11 @@ public class PatientVitals {
 	}
 
 	public PatientFeatures getPatientVitals() {
-		return patientVitals;
+		return vitals;
 	}
 
 	public boolean setPatientVitals(PatientFeatures patientVitals) {
-		this.patientVitals = patientVitals;
+		this.vitals = patientVitals;
 		return true;
 	}
 

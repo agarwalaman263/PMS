@@ -46,8 +46,8 @@ public class IcuControllerTest {
 	public void setUp() throws Exception {
 
 		mockMvc = MockMvcBuilders.standaloneSetup(icuController).apply(sharedHttpSession()).build();
-		ListData.patientList.add(new Patients());
-		ListData.bedList.add(new Bed());
+		ListData.getPatientList().add(new Patients());
+		ListData.getBedList().add(new Bed());
 
 	}
 

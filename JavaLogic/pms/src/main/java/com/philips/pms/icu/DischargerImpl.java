@@ -10,10 +10,10 @@ public class DischargerImpl implements IDischarger{
 	@Override
 	public boolean unsubscribeBed(int number) {
 		
-		ListData.patientDischargeQueue.add(ListData.bedList.get(number).getPatient());
-		ListData.patientList.remove(ListData.bedList.get(number).getPatient());
-		ListData.bedList.get(number).unsubscribe();
-		return ListData.bedList.get(number).unsubscribe();
+		ListData.getPatientDischargeQueue().add(ListData.getBedList().get(number).getPatient());
+		ListData.getPatientList().remove(ListData.getBedList().get(number).getPatient());
+		ListData.getBedList().get(number).unsubscribe();
+		return ListData.getBedList().get(number).unsubscribe();
 		
 	}
 

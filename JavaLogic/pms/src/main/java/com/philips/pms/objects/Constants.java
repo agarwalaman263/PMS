@@ -1,6 +1,8 @@
 package com.philips.pms.objects;
 
-public class Constants {
+ public class Constants {
+	private Constants() { }
+
 	public static final int PULSE_RATE_MAX=120;
 	public static final int PULSE_RATE_MIN=40;
 

@@ -22,7 +22,7 @@ public class PatientController {
 	@GetMapping("/patients")
 	public String function5(Model model) {
 
-		return ListData.patientList.toString();
+		return ListData.getPatientList().toString();
 
 	}
 
@@ -30,7 +30,7 @@ public class PatientController {
 	@GetMapping("/patients/{number}")
 	public String getPatients(@PathVariable int number) {
 
-		return ListData.patientList.get(number).toString();
+		return ListData.getPatientList().get(number).toString();
 
 	}
 

@@ -8,7 +8,8 @@ public class Bed {
 
 	public Bed() {
 		patientObj=new Patients();
-		id=ListData.bedIdCounter++;
+		
+		id=ListData.setBedIdCounter(ListData.getBedIdCounter()+1);
 	}
 	
 	

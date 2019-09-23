@@ -15,12 +15,12 @@ import com.philips.pms.objects.Patients;
 
 	@Override
 	public void sendMessage(WebSocketSession ws,String type) throws IOException {
-<span class="nc bnc" id="L18" title="All 2 branches missed.">		for (Patients patient : ListData.patientList) {</span>
-<span class="nc" id="L19">			ws.sendMessage(new TextMessage(new WriteScheduler().schedule(patient.getId(), type)));</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">		for (Patients patient : ListData.getPatientList()) {</span>
+<span class="fc" id="L19">			ws.sendMessage(new TextMessage(new WriteScheduler().schedule(patient.getId(), type)));</span>
 		
-		}
+<span class="fc" id="L21">		}</span>
 		
-<span class="nc" id="L23">	}</span>
+<span class="fc" id="L23">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

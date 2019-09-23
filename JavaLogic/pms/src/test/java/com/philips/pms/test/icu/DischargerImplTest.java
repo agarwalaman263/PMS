@@ -15,7 +15,7 @@ public class DischargerImplTest {
 		BedHandler bh=new BedHandler();
 		bh.addBeds(3);
 		DischargerImpl dl=new DischargerImpl();
-		assertEquals(dl.unsubscribeBed(2), ListData.bedList.get(2).unsubscribe());
+		assertEquals(dl.unsubscribeBed(2), ListData.getBedList().get(2).unsubscribe());
 	}
 
 }

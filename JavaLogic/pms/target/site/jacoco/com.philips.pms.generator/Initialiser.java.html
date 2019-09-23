@@ -8,17 +8,18 @@ import com.philips.pms.objects.PatientFeatures;
 <span class="fc" id="L8">public class Initialiser {</span>
 
 
-<span class="fc" id="L11">	public DecimalFormat df = new DecimalFormat(Constants.DECIMAL_FORMATTER);</span>
-<span class="fc" id="L12">	public Randomiser rand = new Randomiser();</span>
-
+<span class="fc" id="L11">	public static final DecimalFormat df = new DecimalFormat(Constants.DECIMAL_FORMATTER);</span>
+<span class="fc" id="L12">	public static final Randomiser rand = new Randomiser();</span>
 	public PatientFeatures patientFeatures;
+
+	
 	
 	public PatientFeatures initialise() {
 
-<span class="fc" id="L18">		patientFeatures=new PatientFeatures(rand.randomInt(Constants.PULSE_RATE_MIN, Constants.PULSE_RATE_MAX),</span>
-<span class="fc" id="L19">				rand.randomInt(Constants.INSULINE_LEVEL_MIN, Constants.INSULINE_LEVEL_MAX)</span>
+<span class="fc" id="L19">		patientFeatures=new PatientFeatures(rand.randomInt(Constants.PULSE_RATE_MIN, Constants.PULSE_RATE_MAX),</span>
+<span class="fc" id="L20">				rand.randomInt(Constants.INSULINE_LEVEL_MIN, Constants.INSULINE_LEVEL_MAX)</span>
 				);
-<span class="fc" id="L21">		return (patientFeatures);</span>
+<span class="fc" id="L22">		return (patientFeatures);</span>
 
 	}
 

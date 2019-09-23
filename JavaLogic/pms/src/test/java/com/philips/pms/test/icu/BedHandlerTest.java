@@ -12,7 +12,7 @@ public class BedHandlerTest {
 	@Test
 	public void test() {
 		BedHandler bh=new BedHandler();
-		assertEquals(bh.addBeds(2), ListData.bedList.size()+" beds created");;
+		assertEquals(bh.addBeds(2), ListData.getBedList().size()+" beds created");;
 		
 	}
 

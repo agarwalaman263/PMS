@@ -35,7 +35,7 @@ public class IcuController {
 	@GetMapping("/bed")
 	public String getBedsDetails(Model model) {
 
-		return (ListData.bedList.toString());
+		return (ListData.getBedList().toString());
 
 	}
 
@@ -43,7 +43,7 @@ public class IcuController {
 	@GetMapping("/bed/{number}")
 	public String getBedDeatils(@PathVariable int number) {
 
-		return ("bed:" + number + " : " + ListData.bedList.get(number).getBed());
+		return ("bed:" + number + " : " + ListData.getBedList().get(number).getBed());
 
 	}
 

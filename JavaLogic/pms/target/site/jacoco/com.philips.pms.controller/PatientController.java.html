@@ -22,7 +22,7 @@ import com.philips.pms.patient.IPatientAdmiter;
 	@GetMapping(&quot;/patients&quot;)
 	public String function5(Model model) {
 
-<span class="fc" id="L25">		return ListData.patientList.toString();</span>
+<span class="fc" id="L25">		return ListData.getPatientList().toString();</span>
 
 	}
 
@@ -30,7 +30,7 @@ import com.philips.pms.patient.IPatientAdmiter;
 	@GetMapping(&quot;/patients/{number}&quot;)
 	public String getPatients(@PathVariable int number) {
 
-<span class="fc" id="L33">		return ListData.patientList.get(number).toString();</span>
+<span class="fc" id="L33">		return ListData.getPatientList().get(number).toString();</span>
 
 	}
 

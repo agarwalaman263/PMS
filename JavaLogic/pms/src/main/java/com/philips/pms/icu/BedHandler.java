@@ -13,10 +13,10 @@ public class BedHandler implements IBedHandler {
 	{
 		for(int i=0;i<number;++i)
 		{
-			ListData.bedList.add(new Bed());
-			ListData.patientList.add(ListData.bedList.get(i).getPatient());
+			ListData.getBedList().add(new Bed());
+			ListData.getPatientList().add(ListData.getBedList().get(i).getPatient());
 		}
 		
-		return ListData.bedList.size()+" beds created";
+		return ListData.getBedList().size()+" beds created";
 	}
 }

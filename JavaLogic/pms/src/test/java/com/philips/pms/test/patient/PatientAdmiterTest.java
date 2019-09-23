@@ -18,7 +18,7 @@ public class PatientAdmiterTest {
 		BedHandler bh=new BedHandler();
 		bh.addBeds(3);
 		assertEquals("bed is occupied", pa.patientAdmit(1));
-		ListData.bedList.get(2).unsubscribe();
+		ListData.getBedList().get(2).unsubscribe();
 		assertEquals("patiend added to bed :" + 2, pa.patientAdmit(2));
 		
 		

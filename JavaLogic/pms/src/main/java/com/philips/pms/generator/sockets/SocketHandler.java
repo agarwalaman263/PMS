@@ -9,47 +9,56 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
+	
 	private Timer timer = new Timer();
 	static List<WebSocketSession> sessions = new CopyOnWriteArrayList<>();
 
-	
+	 Logger logger = Logger.getLogger(SocketHandler.class.getName()); 
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
 			throws InterruptedException, IOException {
 
-		ListData.msg.sendMessage(session,  "GeneratorSetter");
-
+		ListData.getMsg().sendMessage(session,  "GeneratorSetter");
+		
 		timer.scheduleAtFixedRate(new TimerTask() {
+			
+
 			public void run() {
 
 				try {
-					if (!ListData.patientAdmitQueue.isEmpty()) {
+					if (!ListData.getPatientAdmitQueue().isEmpty()) {
 
 						session.sendMessage(new TextMessage(new WriteScheduler()
-								.schedule(ListData.patientAdmitQueue.poll().getId(), "GeneratorSetter")));
+								.schedule(ListData.getPatientAdmitQueue().poll().getId(), "GeneratorSetter")));
 
-					} else if (!ListData.patientDischargeQueue.isEmpty()) {
+					} else if (!ListData.getPatientDischargeQueue().isEmpty()) {
 
 						session.sendMessage(new TextMessage(new WriteScheduler()
-								.schedule(ListData.patientDischargeQueue.poll().getId(), "DeleatPatient")));
+								.schedule(ListData.getPatientDischargeQueue().poll().getId(), "DeleatPatient")));
 
 					} else {
 						
-						ListData.msg.sendMessage(session,  "Generator");
+						ListData.getMsg().sendMessage(session,  "Generator");
 
 					}
 					
 				} catch (IOException e) {
-					e.printStackTrace();
+					
+					logger.log(Level.WARNING, " connection lost",e);
+					
 				}
 
 			}
@@ -63,5 +72,5 @@ public class SocketHandler extends TextWebSocketHandler {
 		// the messages will be broadcasted to all users.
 		sessions.add(session);		
 		
-	
+	}
 }

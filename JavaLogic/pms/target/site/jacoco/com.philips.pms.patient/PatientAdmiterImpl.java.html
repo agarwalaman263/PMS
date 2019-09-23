@@ -9,13 +9,13 @@ import com.philips.pms.objects.ListData;
 
 	@Override
 	public String patientAdmit(int number) {
-<span class="fc bfc" id="L12" title="All 2 branches covered.">		if (ListData.bedList.get(number).getPatient() == null) {</span>
-<span class="fc" id="L13">			ListData.patientList.add(ListData.bedList.get(number).setPatients());</span>
-<span class="fc" id="L14">			ListData.patientAdmitQueue.add(ListData.bedList.get(number).setPatients());</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">		if (ListData.getBedList().get(number).getPatient() == null) {</span>
+<span class="fc" id="L13">			ListData.getPatientList().add(ListData.getBedList().get(number).setPatients());</span>
+<span class="fc" id="L14">			ListData.getPatientAdmitQueue().add(ListData.getBedList().get(number).getPatient());</span>
 <span class="fc" id="L15">			return &quot;patiend added to bed :&quot; + number;</span>
-		} else
+		} else {
 <span class="fc" id="L17">			return &quot;bed is occupied&quot;;</span>
-
+		}
 	}
 
 }

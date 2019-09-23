@@ -141,7 +141,7 @@ public class WebSocketConfigTest extends TextWebSocketHandler{
 		};
 		
 		TextMessage tm = new TextMessage("test");
-		ListData.patientAdmitQueue.add(new Patients());
+		ListData.getPatientAdmitQueue().add(new Patients());
 		sh.afterConnectionEstablished(ws);
 		sh.handleMessage(ws, tm);
 

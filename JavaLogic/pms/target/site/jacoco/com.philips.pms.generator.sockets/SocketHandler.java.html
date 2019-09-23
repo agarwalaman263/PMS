@@ -9,97 +9,69 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 @Component
-<span class="fc" id="L19">public class SocketHandler extends TextWebSocketHandler {</span>
-<span class="fc" id="L20">	private Timer timer = new Timer();</span>
-<span class="fc" id="L21">	static List&lt;WebSocketSession&gt; sessions = new CopyOnWriteArrayList&lt;&gt;();</span>
-
+<span class="fc" id="L23">public class SocketHandler extends TextWebSocketHandler {</span>
 	
+<span class="fc" id="L25">	private Timer timer = new Timer();</span>
+<span class="fc" id="L26">	static List&lt;WebSocketSession&gt; sessions = new CopyOnWriteArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L28">	 Logger logger = Logger.getLogger(SocketHandler.class.getName()); </span>
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
 			throws InterruptedException, IOException {
 
-<span class="nc" id="L29">		ListData.msg.sendMessage(session,  &quot;GeneratorSetter&quot;);</span>
+<span class="fc" id="L34">		ListData.getMsg().sendMessage(session,  &quot;GeneratorSetter&quot;);</span>
+		
+<span class="fc" id="L36">		timer.scheduleAtFixedRate(new TimerTask() {</span>
+			
 
-<span class="nc" id="L31">		timer.scheduleAtFixedRate(new TimerTask() {</span>
 			public void run() {
 
 				try {
-<span class="nc bnc" id="L35" title="All 2 branches missed.">					if (!ListData.patientAdmitQueue.isEmpty()) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">					if (!ListData.getPatientAdmitQueue().isEmpty()) {</span>
 
-<span class="nc" id="L37">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
-<span class="nc" id="L38">								.schedule(ListData.patientAdmitQueue.poll().getId(), &quot;GeneratorSetter&quot;)));</span>
+<span class="nc" id="L44">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
+<span class="nc" id="L45">								.schedule(ListData.getPatientAdmitQueue().poll().getId(), &quot;GeneratorSetter&quot;)));</span>
 
-<span class="nc bnc" id="L40" title="All 2 branches missed.">					} else if (!ListData.patientDischargeQueue.isEmpty()) {</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">					} else if (!ListData.getPatientDischargeQueue().isEmpty()) {</span>
 
-<span class="nc" id="L42">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
-<span class="nc" id="L43">								.schedule(ListData.patientDischargeQueue.poll().getId(), &quot;DeleatPatient&quot;)));</span>
+<span class="nc" id="L49">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
+<span class="nc" id="L50">								.schedule(ListData.getPatientDischargeQueue().poll().getId(), &quot;DeleatPatient&quot;)));</span>
 
-<span class="nc" id="L45">					} else {</span>
+					} else {
 						
-<span class="nc" id="L47">						ListData.msg.sendMessage(session,  &quot;Generator&quot;);</span>
+<span class="nc" id="L54">						ListData.getMsg().sendMessage(session,  &quot;Generator&quot;);</span>
 
 					}
 					
-<span class="nc" id="L51">				} catch (IOException e) {</span>
-<span class="nc" id="L52">					e.printStackTrace();</span>
-				}
+<span class="nc" id="L58">				} catch (IOException e) {</span>
+					
+<span class="nc" id="L60">					logger.log(Level.WARNING, &quot; connection lost&quot;,e);</span>
+					
+<span class="nc" id="L62">				}</span>
 
-<span class="nc" id="L55">			}</span>
-<span class="nc" id="L56">		}, 1000, 5000);</span>
+<span class="nc" id="L64">			}</span>
+		}, 1000, 5000);
 
-<span class="nc" id="L58">	}</span>
+<span class="fc" id="L67">	}</span>
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
 		// the messages will be broadcasted to all users.
-<span class="nc" id="L64">		sessions.add(session);</span>
-
+<span class="fc" id="L73">		sessions.add(session);		</span>
 		
-<span class="nc" id="L67">		ListData.msg.sendMessage(session,  &quot;GeneratorSetter&quot;);</span>
-
-<span class="nc" id="L69">		session.sendMessage(new TextMessage(&quot;hi&quot;));</span>
-		
-<span class="nc" id="L71">		timer.scheduleAtFixedRate(new TimerTask() {</span>
-			public void run() {
-
-				try {
-<span class="nc bnc" id="L75" title="All 2 branches missed.">					if (!ListData.patientAdmitQueue.isEmpty()) {</span>
-
-<span class="nc" id="L77">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
-<span class="nc" id="L78">								.schedule(ListData.patientAdmitQueue.poll().getId(), &quot;GeneratorSetter&quot;)));</span>
-
-<span class="nc bnc" id="L80" title="All 2 branches missed.">					} else if (!ListData.patientDischargeQueue.isEmpty()) {</span>
-
-<span class="nc" id="L82">						session.sendMessage(new TextMessage(new WriteScheduler()</span>
-<span class="nc" id="L83">								.schedule(ListData.patientDischargeQueue.poll().getId(), &quot;DeleatPatient&quot;)));</span>
-
-<span class="nc" id="L85">					} else {</span>
-						
-<span class="nc" id="L87">						ListData.msg.sendMessage(session,  &quot;Generator&quot;);</span>
-
-					}
-					
-<span class="nc" id="L91">				} catch (IOException e) {</span>
-<span class="nc" id="L92">					e.printStackTrace();</span>
-				}
-
-<span class="nc" id="L95">			}</span>
-<span class="nc" id="L96">		}, 1000, 5000);</span>
-		
-		
-<span class="nc" id="L99">	}</span>
-
-		
-		
-	
+<span class="fc" id="L75">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

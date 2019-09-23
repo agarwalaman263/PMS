@@ -9,13 +9,13 @@ public class PatientAdmiterImpl implements IPatientAdmiter {
 
 	@Override
 	public String patientAdmit(int number) {
-		if (ListData.bedList.get(number).getPatient() == null) {
-			ListData.patientList.add(ListData.bedList.get(number).setPatients());
-			ListData.patientAdmitQueue.add(ListData.bedList.get(number).setPatients());
+		if (ListData.getBedList().get(number).getPatient() == null) {
+			ListData.getPatientList().add(ListData.getBedList().get(number).setPatients());
+			ListData.getPatientAdmitQueue().add(ListData.getBedList().get(number).getPatient());
 			return "patiend added to bed :" + number;
-		} else
+		} else {
 			return "bed is occupied";
-
+		}
 	}
 
 }

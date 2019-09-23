@@ -2,19 +2,70 @@
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import com.philips.pms.generator.sockets.SessionMessageSenderImpl;
 
-<span class="nc" id="L9">public class ListData {</span>
-<span class="fc" id="L10">	public static boolean bed1=false;</span>
-<span class="fc" id="L11">	public static int bedIdCounter=1;</span>
-<span class="fc" id="L12">	public static int patientIdCounter=1;</span>
-<span class="fc" id="L13">	public static SessionMessageSenderImpl msg=new SessionMessageSenderImpl();</span>
-<span class="fc" id="L14">	public static ArrayList&lt;Bed&gt; bedList=new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L15">	public static ArrayList&lt;Patients&gt; patientList=new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L16">	public static Queue&lt;Patients&gt; patientDischargeQueue=new LinkedList&lt;&gt;();</span>
-<span class="fc" id="L17">	public static Queue&lt;Patients&gt; patientAdmitQueue=new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L10">public class ListData {</span>
+	
+<span class="fc" id="L12">	private static int bedIdCounter=-1;</span>
+<span class="fc" id="L13">	private static int patientIdCounter=-1;</span>
+<span class="fc" id="L14">	private static SessionMessageSenderImpl msg=new SessionMessageSenderImpl();</span>
+<span class="fc" id="L15">	private static List&lt;Bed&gt; bedList=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L16">	private static List&lt;Patients&gt; patientList=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L17">	private static Queue&lt;Patients&gt; patientDischargeQueue=new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L18">	private static Queue&lt;Patients&gt; patientAdmitQueue=new LinkedList&lt;&gt;();</span>
+	
+	public static int getBedIdCounter() {
+<span class="fc" id="L21">		return bedIdCounter;</span>
+	}
+	public static int setBedIdCounter(int id) {
+<span class="fc" id="L24">		bedIdCounter = id;</span>
+<span class="fc" id="L25">		return bedIdCounter;</span>
+	}
+	public static int getPatientIdCounter() {
+<span class="fc" id="L28">		return patientIdCounter;</span>
+	}
+	public static int setPatientIdCounter(int patientIdCounter) {
+<span class="fc" id="L31">		ListData.patientIdCounter = patientIdCounter;</span>
+<span class="fc" id="L32">		return patientIdCounter;</span>
+	}
+	public static SessionMessageSenderImpl getMsg() {
+<span class="fc" id="L35">		return msg;</span>
+	}
+	public static void setMsg(SessionMessageSenderImpl msg) {
+<span class="nc" id="L38">		ListData.msg = msg;</span>
+<span class="nc" id="L39">	}</span>
+	public static List&lt;Bed&gt; getBedList() {
+<span class="fc" id="L41">		return bedList;</span>
+	}
+	public static void setBedList(List&lt;Bed&gt; bedList) {
+<span class="nc" id="L44">		ListData.bedList = bedList;</span>
+<span class="nc" id="L45">	}</span>
+	public static List&lt;Patients&gt; getPatientList() {
+<span class="fc" id="L47">		return patientList;</span>
+	}
+	public static void setPatientList(List&lt;Patients&gt; patientList) {
+<span class="nc" id="L50">		ListData.patientList = patientList;</span>
+<span class="nc" id="L51">	}</span>
+	public static Queue&lt;Patients&gt; getPatientDischargeQueue() {
+<span class="fc" id="L53">		return patientDischargeQueue;</span>
+	}
+	public static void setPatientDischargeQueue(Queue&lt;Patients&gt; patientDischargeQueue) {
+<span class="nc" id="L56">		ListData.patientDischargeQueue = patientDischargeQueue;</span>
+<span class="nc" id="L57">	}</span>
+	public static Queue&lt;Patients&gt; getPatientAdmitQueue() {
+<span class="fc" id="L59">		return patientAdmitQueue;</span>
+	}
+	public static void setPatientAdmitQueue(Queue&lt;Patients&gt; patientAdmitQueue) {
+<span class="nc" id="L62">		ListData.patientAdmitQueue = patientAdmitQueue;</span>
+<span class="nc" id="L63">	}</span>
+	
+	
+	
+	
+	
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

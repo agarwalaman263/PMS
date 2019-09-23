@@ -10,10 +10,10 @@ import com.philips.pms.objects.ListData;
 	@Override
 	public boolean unsubscribeBed(int number) {
 		
-<span class="fc" id="L13">		ListData.patientDischargeQueue.add(ListData.bedList.get(number).getPatient());</span>
-<span class="fc" id="L14">		ListData.patientList.remove(ListData.bedList.get(number).getPatient());</span>
-<span class="fc" id="L15">		ListData.bedList.get(number).unsubscribe();</span>
-<span class="fc" id="L16">		return ListData.bedList.get(number).unsubscribe();</span>
+<span class="fc" id="L13">		ListData.getPatientDischargeQueue().add(ListData.getBedList().get(number).getPatient());</span>
+<span class="fc" id="L14">		ListData.getPatientList().remove(ListData.getBedList().get(number).getPatient());</span>
+<span class="fc" id="L15">		ListData.getBedList().get(number).unsubscribe();</span>
+<span class="fc" id="L16">		return ListData.getBedList().get(number).unsubscribe();</span>
 		
 	}
 
