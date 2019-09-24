@@ -8,7 +8,6 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class AddressBarComponent implements OnInit {
   @Output() presenceofURL: EventEmitter<boolean> = new EventEmitter<boolean>();
-  // tslint:disable-next-line: variable-name
 
   constructor(private httpService: HttpServicesService, private fb: FormBuilder) { }
   public Calculate: FormGroup = this.fb.group({
@@ -16,19 +15,27 @@ export class AddressBarComponent implements OnInit {
     URL: ['', Validators.required]
   });
   ngOnInit(): void {
-    console.log(this.Calculate);
   }
   public createAlert = (str) => {
     alert(str);
   }
+  public emitter(bool) {
+    this.presenceofURL.emit(bool);
+  }
   public onCalculate = () => {
-    this.presenceofURL.emit(true);
+
     let result = null;
     this.httpService.sendURL(this.Calculate.value).subscribe(
-      data => { result = data; },
-      err => console.log(err),
-      () => console.log(result)
+      data => result = data,
+      err => {
+        console.log(err)
+        alert('Error Occured, Kindly Try again with correct URL');
+      },
+      () => {
+        console.log('aman')
+        alert('Calibration Successful.');
+        this.emitter(true);
+      }
     );
-
   }
 }

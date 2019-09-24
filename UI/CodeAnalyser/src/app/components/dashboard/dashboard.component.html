@@ -1,22 +1,15 @@
-<div class="center-box" >
+<div class="center-box">
     <div class="task-row" *ngFor="let task of this.ListOfOperations">
         <div>{{task.tag}}</div>
         <div>
-        <button 
-        class="btn btn-outline-success my-2 my-sm-0 ml-3 submit-button" 
-        attr.data={{task.tag}}  
-        style="color: white;" 
-        type="submit"
-        (click)="this.displayModal(task.tag)"
-        >Best Case</button>
-        <button 
-        class="btn btn-outline-success my-2 my-sm-0 ml-3 submit-button" 
-        attr.data={{task.tag}}  
-        style="color: white;" 
-        type="submit"
-        (click)="this.displayModal(task.tag)"
-        >Last Case</button>
+            <input type="number" [(ngModel)]="task.value" class="form-control" [placeholder]="'Outset for '+task.tag">
+            <button class="btn btn-outline-success my-2 my-sm-0 ml-3 submit-button" attr.data={{task.tag}}
+                style="color: white;" type="submit" (click)="this.displayModal(task.tag)">Last Case</button>
+        </div>
     </div>
-    </div>
+    <h5>
+        * Leaving the Field will take the default value
+    </h5>
 </div>
-<app-modal *ngIf="this.showModal==true" (closeModal)="this.closeModal($event)" [selectedProperty]="this.selectedProperty"></app-modal>
+<app-modal *ngIf="this.showModal==true" (closeModal)="this.closeModal($event)"
+    [selectedProperty]="this.selectedProperty" [passedValue]="this.passedValue"></app-modal>

@@ -3,7 +3,27 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  start: 'http://localhost:8080/start',
+  'Code Complexity': {
+    link: 'http://localhost:8080/complexity'
+  },
+  'Code Coverage': {
+    link: 'http://localhost:8080/coverage'
+  },
+  'Code Duplication': {
+    link: 'http://localhost:8080/duplicate'
+  },
+  Security: {
+    link: 'http://localhost:8080/security'
+  },
+  'Test Coverage': {
+    link: 'http://localhost:8080/test'
+  },
+  'Compiler Warnings': {
+    link: 'http://localhost:8080/warnings'
+  }
+
 };
 
 /*
