@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment'
+import { environment } from './../../environments/environment';
+import { SpinnerService } from './spinner/spinner.service';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpServicesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private spinner: SpinnerService) { }
   public sendURL = (data) => {
     return this.http.get(environment.start, {
       params: {
@@ -27,64 +28,4 @@ export class HttpServicesService {
       }
     });
   }
-  // public getComplexity = (data) => {
-  //   if (data === null || data === '') {
-  //     data = 1000;
-  //   }
-  //   return this.http.get('http://localhost:8080/complexity', {
-  //     params: {
-  //       item3: data
-  //     }
-  //   });
-  // }
-  // public getCodeCoverage = (data) => {
-  //   if (data === null || data === '') {
-  //     data = 1000;
-  //   }
-  //   return this.http.get('http://localhost:8080/coverage', {
-  //     params: {
-  //       item0: data
-  //     }
-  //   });
-  // }
-  // public getCodeDuplication = (data) => {
-  //   if (data === null || data === '') {
-  //     data = 1000;
-  //   }
-  //   return this.http.get('http://localhost:8080/duplicate', {
-  //     params: {
-  //       item5: data
-  //     }
-  //   });
-  // }
-  // public getSecurity = (data) => {
-  //   if (data === null || data === '') {
-  //     data = 1000;
-  //   }
-  //   return this.http.get('http://localhost:8080/security', {
-  //     params: {
-  //       item4: data
-  //     }
-  //   });
-  // }
-  // public getTest = (data) => {
-  //   if (data === null || data === '') {
-  //     data = 1000;
-  //   }
-  //   return this.http.get('http://localhost:8080/test', {
-  //     params: {
-  //       item2: data
-  //     }
-  //   });
-  // }
-  // public getWarnings = (data) => {
-  //   if (data === null || data === '') {
-  //     data = 1000;
-  //   }
-  //   return this.http.get('http://localhost:8080/warnings', {
-  //     params: {
-  //       item1: data
-  //     }
-  //   });
-  // }
 }

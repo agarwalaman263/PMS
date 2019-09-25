@@ -28,11 +28,10 @@ export class AddressBarComponent implements OnInit {
     this.httpService.sendURL(this.Calculate.value).subscribe(
       data => result = data,
       err => {
-        console.log(err)
+        console.log(err);
         alert('Error Occured, Kindly Try again with correct URL');
       },
       () => {
-        console.log('aman')
         alert('Calibration Successful.');
         this.emitter(true);
       }

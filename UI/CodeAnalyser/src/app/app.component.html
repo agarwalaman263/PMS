@@ -1,2 +1,11 @@
-<app-address-bar (presenceofURL)="this.ciphonState($event)"></app-address-bar>
-<app-dashboard [presence]="this.stateTobeCiphoned"></app-dashboard>
+<div class="sidebarButton" (click)="this.visibleSidebar()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+<app-sidebar [SidebarState]="this.sidebarState" (closeSidebar)="this.closeSidebar($event)"></app-sidebar>
+<router-outlet></router-outlet>
+<app-spinner></app-spinner>
+<!-- <app-home></app-home> -->
+<!-- <app-address-bar (presenceofURL)="this.ciphonState($event)"></app-address-bar>
+<app-dashboard [presence]="this.stateTobeCiphoned"></app-dashboard> -->

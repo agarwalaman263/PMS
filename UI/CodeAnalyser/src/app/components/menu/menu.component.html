@@ -1,0 +1,13 @@
+<table>
+    <tr *ngFor="let task of this.ListOfOperations">
+        <td>{{task.tag}}</td>
+        <td> <input type="number" min="0" [(ngModel)]="task.value" class="form-control"
+                [placeholder]="'Outset for '+task.tag"></td>
+        <td></td>
+        <td> <button class="btn btn-outline-success my-2 my-sm-0 ml-3 submit-button" attr.data={{task.tag}}
+                style="background-color: white;color:green;margin-left: 0 !important;" type="submit"
+                (click)="this.displayModal(task.tag)">Callibrate</button></td>
+    </tr>
+</table>
+<app-modal *ngIf="this.showModal==true" (closeModal)="this.closeModal($event)"
+    [selectedProperty]="this.selectedProperty" [passedValue]="this.passedValue"></app-modal>

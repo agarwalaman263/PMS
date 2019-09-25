@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { SpinnerService } from './services/spinner/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,15 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'CodeAnalyser';
-  public state = '';
-  @Input() stateTobeCiphoned;
-  public ciphonState = (data) => {
-    this.stateTobeCiphoned = data;
+  constructor(private spinner: SpinnerService) {
+
+  }
+  public sidebarState = false;
+  public visibleSidebar() {
+    this.spinner.show();
+    this.sidebarState = true;
+  }
+  public closeSidebar(state) {
+    this.sidebarState = false;
   }
 }
