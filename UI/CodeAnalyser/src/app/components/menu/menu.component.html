@@ -1,12 +1,12 @@
 <table>
     <tr *ngFor="let task of this.ListOfOperations">
-        <td>{{task.tag}}</td>
-        <td> <input type="number" min="0" [(ngModel)]="task.value" class="form-control"
-                [placeholder]="'Outset for '+task.tag"></td>
+        <td style="font-size: 20px;font-weight: bold;padding-right:20px;background-color: #c0c0c0">{{task.tag}}</td>
+        <td > <input type="number" min="0" [(ngModel)]="task.value" class="form-control"
+                [placeholder]="'Outset for '+task.tag" [ngClass]="{'is-invalid': !this.negativeChecker(task)}"></td>
         <td></td>
         <td> <button class="btn btn-outline-success my-2 my-sm-0 ml-3 submit-button" attr.data={{task.tag}}
-                style="background-color: white;color:green;margin-left: 0 !important;" type="submit"
-                (click)="this.displayModal(task.tag)">Callibrate</button></td>
+                style="border-color: black;background-color: white;color:black;margin-left: 0 !important;" type="submit"
+                (click)="this.displayModal(task.tag)" [disabled]="!this.negativeChecker(task)">Callibrate</button></td>
     </tr>
 </table>
 <app-modal *ngIf="this.showModal==true" (closeModal)="this.closeModal($event)"

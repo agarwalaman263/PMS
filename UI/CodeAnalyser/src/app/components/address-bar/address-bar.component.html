@@ -1,19 +1,28 @@
 <div class="green-background full-length">
-        <form [formGroup]="Calculate">
+        <form [formGroup]="this.Calculate">
                 <div class="form-group">
-                        <input formControlName="name" type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" value="vi" (change)="this.presenceofURL.emit(false)"
-                                placeholder="Enter the Project Name.">
+                        <input formControlName="name" type="text" class="form-control"
+                                (change)="this.presenceofURL.emit(false)" placeholder="Enter the Project Name.">
                         <small *ngIf="this.Calculate.get('name').errors && this.Calculate.get('name').dirty"
                                 class="form-text text-muted">
                                 This field is required</small>
                 </div>
-
                 <div class="form-group">
-                        <input formControlName="URL" type="text" class="form-control" id="exampleInputPassword1"
+                        <input formControlName="URL" type="text" class="form-control"
                                 placeholder="Enter the project Path"
                                 value="C:/Users/320050720/OneDrive - Philips/Desktop/PMS Casestudy/JavaLogic/pms"
-                                (change)="this.presenceofURL.emit(false)">
+                                (change)="this.presenceofURL.emit(false)" [readonly]="this.Calculate.get('GIT').value!==''">
+                        <small *ngIf="this.Calculate.get('URL').errors && this.Calculate.get('URL').dirty"
+                                class="form-text text-muted">This field is
+                                required
+                        </small>
+                </div>
+                <div class="form-group">
+                        <input formControlName="GIT" type="text" class="form-control"
+                                placeholder="Enter the GIT URL"
+                                (change)="this.presenceofURL.emit(false)"
+                                [readonly]="this.Calculate.get('URL').value!==''"
+                                >
                         <small *ngIf="this.Calculate.get('URL').errors && this.Calculate.get('URL').dirty"
                                 class="form-text text-muted">This field is
                                 required

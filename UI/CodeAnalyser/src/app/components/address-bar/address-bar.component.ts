@@ -1,6 +1,9 @@
 import { Component, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpServicesService } from './../../services/http-services.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { SpinnerService } from 'src/app/services/spinner/spinner.service';
+import { take, finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-address-bar',
   templateUrl: './address-bar.component.html',
@@ -9,10 +12,11 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class AddressBarComponent implements OnInit {
   @Output() presenceofURL: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private httpService: HttpServicesService, private fb: FormBuilder) { }
+  constructor(private httpService: HttpServicesService, private fb: FormBuilder, private spinner: SpinnerService) { }
   public Calculate: FormGroup = this.fb.group({
     name: ['', Validators.required],
-    URL: ['', Validators.required]
+    URL: [''],
+    GIT: ['']
   });
   ngOnInit(): void {
   }
@@ -25,7 +29,9 @@ export class AddressBarComponent implements OnInit {
   public onCalculate = () => {
 
     let result = null;
-    this.httpService.sendURL(this.Calculate.value).subscribe(
+    this.spinner.show();
+    this.httpService.sendURL(this.Calculate.value).pipe(finalize(() => this.spinner.hide()),
+    ).subscribe(
       data => result = data,
       err => {
         console.log(err);

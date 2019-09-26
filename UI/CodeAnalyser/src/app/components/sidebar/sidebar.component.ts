@@ -15,6 +15,10 @@ export class SidebarComponent implements OnInit {
   constructor(public router: Router) { }
   ngOnInit() {
   }
+  public navigate(link) {
+    this.router.navigate(link);
+    this.closeClicked();
+  }
   public closeClicked() {
     this.closeSidebar.emit(false);
   }

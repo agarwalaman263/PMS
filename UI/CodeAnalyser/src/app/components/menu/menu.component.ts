@@ -8,7 +8,7 @@ import { HttpServicesService } from 'src/app/services/http-services.service';
 })
 export class MenuComponent implements OnInit {
 
-  @Input() presence: boolean;
+  @Input() public presence: boolean;
   constructor(private HttpService: HttpServicesService) { }
   public showModal = false;
   public passedValue = null;
@@ -39,7 +39,7 @@ export class MenuComponent implements OnInit {
     value: ''
   }];
   public displayModal = (task) => {
-    if (this.presence === true) {
+    if (this.presence === true && this.negativeChecker(task)) {
       this.ListOfOperations.forEach(feature => {
 
         if (feature.tag === task) {
@@ -61,6 +61,16 @@ export class MenuComponent implements OnInit {
   public closeModal = (data) => {
     console.log(data);
     this.showModal = data;
+  }
+  public negativeChecker(task) {
+    if (task.value === '' || task.value === null) {
+      return true;
+    } else if (parseInt(task.value, 10) < 0) {
+      return false;
+    } else {
+      return true;
+    }
+
   }
   ngOnInit() {
   }

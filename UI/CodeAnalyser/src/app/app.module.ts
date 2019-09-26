@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {RouterModule} from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AddressBarComponent } from './components/address-bar/address-bar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -10,7 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
-import {SpinnerModule} from './services/spinner/spinner.module';
+import { SpinnerModule } from './services/spinner/spinner.module';
+import { LiveCodeEditorComponent } from './components/live-code-editor/live-code-editor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import {SpinnerModule} from './services/spinner/spinner.module';
     ModalComponent,
     SidebarComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    LiveCodeEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -28,14 +30,14 @@ import {SpinnerModule} from './services/spinner/spinner.module';
     ReactiveFormsModule,
     SpinnerModule,
     RouterModule.forRoot([
-      { path:  '', component:  HomeComponent},
-      { path:  'dashboard', component:  DashboardComponent}
-
-
+      { path: '', component: HomeComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'editor', component: LiveCodeEditorComponent }
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class AppModule { }

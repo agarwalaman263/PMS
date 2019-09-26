@@ -1,6 +1,6 @@
 <div id="mySidenav" class="sidenav"  [ngClass]="{expand:this.SidebarState}">
     <div  class="closebtn" (click)="this.closeClicked()">&times;</div>
-    <div (click)="this.router.navigate(['/'])">Home</div>
-    <div (click)="this.router.navigate(['/dashboard'])">Local Project</div>
-    <div >Live Code </div>
+    <a  [routerLink]="'/'">Home</a>
+    <a  [routerLink]="'/dashboard'">Project</a>
+    <a  [routerLink]="'/editor'">Live Code </a>
 </div>

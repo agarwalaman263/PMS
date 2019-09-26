@@ -13,7 +13,6 @@ export class AppComponent {
   }
   public sidebarState = false;
   public visibleSidebar() {
-    this.spinner.show();
     this.sidebarState = true;
   }
   public closeSidebar(state) {

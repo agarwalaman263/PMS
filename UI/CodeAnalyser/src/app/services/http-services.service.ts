@@ -13,7 +13,8 @@ export class HttpServicesService {
     return this.http.get(environment.start, {
       params: {
         v1: data.name,
-        v2: data.URL
+        v2: data.URL,
+        v3: data.GIT
       }
     });
   }

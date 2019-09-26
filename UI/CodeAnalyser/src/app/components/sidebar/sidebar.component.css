@@ -12,7 +12,7 @@
   }
   
   /* The navigation menu links */
-  .sidenav div {
+  .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -22,12 +22,12 @@
   }
   
   /* When you mouse over the navigation links, change their color */
-  .sidenav div:hover {
+  .sidenav a:hover {
     color: #f1f1f1;
     cursor: pointer;
   }
   .expand{
-    width: 400px;
+    width: 350px;
   }
   /* Position and style the close button (top right corner) */
   .sidenav .closebtn {
