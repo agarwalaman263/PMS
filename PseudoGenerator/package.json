@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "websocket": "^1.0.29",
-    "ws": "^7.1.2"
+    "ws": "^7.4.6"
   }
 }
